@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "speedtest-net": "^1.4.2"
+  }
+}
