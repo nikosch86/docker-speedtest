@@ -1,10 +1,17 @@
-FROM node:10-alpine
+FROM node:22-alpine as builder
 
-ENV NODE_ENV production
+RUN apk add --no-cache python3 g++ make
+
+ENV NODE_ENV=production
 
 WORKDIR /app
-COPY package.json /app
-RUN yarn
-COPY . /app
+COPY package.json package-lock.json /app
+RUN npm install
 
-CMD [ "npx", "speedtest-net"]
+FROM node:22-alpine
+
+WORKDIR /app
+COPY --from=builder /app/node_modules node_modules
+COPY --from=builder /app/package.json /app/package-lock.json .
+
+CMD [ "npx", "speedtest-net", "--accept-license", "--accept-gdpr"]
