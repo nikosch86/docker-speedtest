@@ -1,9 +1,7 @@
 # docker-speedtest
 
-this image wraps the 'speedtest-net' module by ~ddsol  
+this image aids in testing the speed of your internet connection
 
 usage: 
 `docker run -it --rm nikosch86/docker-speedtest`  
 
-
-https://www.npmjs.com/package/speedtest-net
